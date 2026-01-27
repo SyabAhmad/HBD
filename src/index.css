@@ -4,10 +4,30 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&family=Pacifico&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap");
 
 :root {
-  --cream: #faf7f2;
-  --charcoal: #2e2e2e;
-  --gold: #c8a951;
-  --rose: #f2c6c2;
+  /* Primary - Soft, warm tones */
+  --primary-cream: #faf8f5;
+  --primary-rose: #e8d5d5;
+  --primary-gold: #d4af37;
+
+  /* Secondary - Muted accents */
+  --secondary-sage: #a8c5a8;
+  --secondary-lavender: #c9b8d9;
+  --secondary-peach: #f5d6c6;
+
+  /* Text - Better contrast */
+  --text-primary: #2d2d2d;
+  --text-secondary: #5a5a5a;
+  --text-muted: #8a8a8a;
+
+  /* Special - For highlights */
+  --highlight-pink: #e87c7c;
+  --highlight-purple: #9b7ebd;
+
+  /* Legacy - Keep for backward compatibility */
+  --cream: #faf8f5;
+  --charcoal: #2d2d2d;
+  --gold: #d4af37;
+  --rose: #e8d5d5;
   --mint: #b7e4c7;
   --night: #1c1f2a;
 }
@@ -38,6 +58,16 @@ h3 {
   font-family: "Pacifico", cursive;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
+.solid-panel {
+  background-color: #ffffff;
+  border: 3px solid rgba(200, 169, 81, 0.2);
+  border-radius: 28px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+}
+.romantic-text {
+  font-family: "Playfair Display", serif;
+  letter-spacing: 0.2px;
+}
 
 .urdu-text {
   font-family: "Noto Nastaliq Urdu", serif;
@@ -47,9 +77,7 @@ h3 {
 
 /* Smooth transitions */
 .screen-transition {
-  transition:
-    opacity 0.6s ease-in-out,
-    transform 0.6s ease-in-out;
+  transition: opacity 0.8s ease-in-out;
 }
 
 /* Animations */
@@ -66,11 +94,17 @@ h3 {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen-transition,
+  .fade-in {
+    transition: none;
+    animation: none;
   }
 }
 
@@ -135,7 +169,8 @@ h3 {
 }
 
 @keyframes bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -171,13 +206,17 @@ h3 {
     opacity: 1;
   }
   100% {
-    transform: translate(calc(cos(var(--angle, 0deg)) * 100px), calc(sin(var(--angle, 0deg)) * 100px));
+    transform: translate(
+      calc(cos(var(--angle, 0deg)) * 100px),
+      calc(sin(var(--angle, 0deg)) * 100px)
+    );
     opacity: 0;
   }
 }
 
 @keyframes sparkle {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(0) rotate(0deg);
     opacity: 0;
   }
@@ -199,8 +238,216 @@ h3 {
   }
 }
 
+/* Creative animations */
+@keyframes gentleFloat {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-8px) rotate(-1deg);
+  }
+}
+
+@keyframes softPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+}
+
+@keyframes bounceSoft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes reveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Creative additions */
+@keyframes sparkleBurst {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes floatingConfetti {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes neonGlow {
+  0%,
+  100% {
+    text-shadow:
+      0 0 20px rgba(255, 255, 255, 0.5),
+      0 0 30px rgba(255, 105, 180, 0.3),
+      0 0 40px rgba(255, 105, 180, 0.2);
+  }
+  50% {
+    text-shadow:
+      0 0 25px rgba(255, 255, 255, 0.7),
+      0 0 35px rgba(255, 105, 180, 0.5),
+      0 0 45px rgba(255, 105, 180, 0.4);
+  }
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 40px rgba(212, 175, 55, 0.6),
+      0 0 60px rgba(212, 175, 55, 0.4);
+  }
+}
+
+@keyframes rainbowShift {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes glitch {
+  0%,
+  100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+}
+
+@keyframes liquidWobble {
+  0%,
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+}
+
+@keyframes starTwinkle {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 1;
+  }
+}
+
 .float-animation {
-  animation: float 3s ease-in-out infinite;
+  animation: gentleFloat 4s ease-in-out infinite;
 }
 
 .fade-in {
@@ -208,7 +455,7 @@ h3 {
 }
 
 .flame-flicker {
-  animation: flicker 0.15s ease-in-out infinite;
+  animation: gentleFlicker 0.3s ease-in-out infinite;
 }
 
 .fly-away {
@@ -216,7 +463,7 @@ h3 {
 }
 
 .heartbeat {
-  animation: heartBeat 1.5s ease-in-out infinite;
+  animation: heartBeat 2s ease-in-out infinite;
 }
 
 .twinkle {
@@ -225,6 +472,61 @@ h3 {
 
 .rotate-in {
   animation: rotateIn 1s ease-out forwards;
+}
+
+@keyframes bgScroll {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+.bg-scroll-text {
+  animation: bgScroll var(--duration, 24s) linear infinite;
+}
+
+@keyframes bgMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.bg-scroll-track {
+  display: flex;
+  width: max-content;
+  animation: bgMarquee var(--duration, 24s) linear infinite reverse;
+  gap: 0;
+}
+
+.bg-scroll-item {
+  display: inline-block;
+  padding-right: 0;
+  white-space: nowrap;
+}
+
+.bg-rainbow-text {
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 107, 107, 0.25),
+    rgba(255, 184, 77, 0.25),
+    rgba(255, 217, 61, 0.25),
+    rgba(107, 255, 149, 0.25),
+    rgba(107, 181, 255, 0.25),
+    rgba(184, 107, 255, 0.25),
+    rgba(255, 107, 214, 0.25)
+  );
+  background-size: 200% 100%;
+  color: #111;
+}
+
+.bg-rainbow-text.light {
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 
 .bounce {
@@ -249,4 +551,70 @@ h3 {
 
 .button-pop {
   animation: buttonPop 0.3s ease-out;
+}
+
+/* New refined animation classes */
+.gentle-float {
+  animation: gentleFloat 4s ease-in-out infinite;
+}
+
+.soft-pulse {
+  animation: softPulse 2s ease-in-out infinite;
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.scale-in {
+  animation: scaleIn 0.6s ease-out forwards;
+}
+
+.wave {
+  animation: wave 2s ease-in-out infinite;
+}
+
+.bounce-soft {
+  animation: bounceSoft 1.5s ease-in-out infinite;
+}
+
+.reveal {
+  animation: reveal 1s ease-out forwards;
+}
+
+/* Creative animation classes */
+.sparkle-burst {
+  animation: sparkleBurst 0.8s ease-out forwards;
+}
+
+.floating-confetti {
+  animation: floatingConfetti 4s ease-out forwards;
+}
+
+.neon-glow {
+  animation: neonGlow 2s ease-in-out infinite;
+}
+
+.pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.rainbow-shift {
+  animation: rainbowShift 5s linear infinite;
+}
+
+.glitch {
+  animation: glitch 0.3s ease-in-out;
+}
+
+.liquid-wobble {
+  animation: liquidWobble 3s ease-in-out infinite;
+}
+
+.star-twinkle {
+  animation: starTwinkle 1.5s ease-in-out infinite;
 }
