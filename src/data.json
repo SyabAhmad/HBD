@@ -1,0 +1,401 @@
+[
+  {
+    "id": 1,
+    "reason": "Because a beautiful soul was born today.",
+    "type": "gratitude"
+  },
+  {
+    "id": 2,
+    "reason": "تمہاری آنکھوں نے دیکھا تو دل کو سکوں ملا،\nتمہاری آنکھوں نے دیکھا تو ہر غم بے رنگ ہوا۔",
+    "type": "prayer"
+  },
+  {
+    "id": 3,
+    "reason": "Because your smile already makes hearts softer.",
+    "type": "love"
+  },
+  {
+    "id": 4,
+    "reason": "جب تُو مسکرائے تو چاند بھی شرمسار ہو جائے،\nجب تُو مسکرائے تو بہار دل میں جوان ہو جائے۔",
+    "type": "gratitude"
+  },
+  {
+    "id": 5,
+    "reason": "Because today reminds us that hope always begins small.",
+    "type": "hope"
+  },
+  {
+    "id": 6,
+    "reason": "وہ آواز تمہاری، جیسے صبح کی پہلی ہوا،\nوہ آواز تمہاری، جیسے دل کا سکوں و آرام۔",
+    "type": "prayer"
+  },
+  {
+    "id": 7,
+    "reason": "Because little hands will one day build big dreams.",
+    "type": "hope"
+  },
+  {
+    "id": 8,
+    "reason": "Because angels smiled when you arrived.",
+    "type": "faith"
+  },
+  {
+    "id": 9,
+    "reason": "خالی دل میں تیری یاد نے روشنی جلائی،\nہر سائے نے تیری یاد میں خوشبو باندھ لی۔",
+    "type": "love"
+  },
+  {
+    "id": 10,
+    "reason": "Because Allah never creates without purpose.",
+    "type": "faith"
+  },
+  {
+    "id": 11,
+    "reason": "تمہاری مسکان میں لبوں پر خوشبو سی بسی،\nتمہاری مسکان نے دل کے دروازے کھول دیے۔",
+    "type": "prayer"
+  },
+  {
+    "id": 12,
+    "reason": "Because innocence is the purest form of strength.",
+    "type": "wisdom"
+  },
+  {
+    "id": 13,
+    "reason": "Because your journey has just begun, and it is sacred.",
+    "type": "hope"
+  },
+  {
+    "id": 14,
+    "reason": "تیری زلفوں کا ہر بال، رات کی چاندنی جیسا،\nتیرے بالوں کی مہک، صبح کی ہوا جیسی۔",
+    "type": "love"
+  },
+  {
+    "id": 15,
+    "reason": "Because every breath you take is mercy.",
+    "type": "faith"
+  },
+  {
+    "id": 16,
+    "reason": "Because today is proof that goodness still arrives.",
+    "type": "gratitude"
+  },
+  {
+    "id": 17,
+    "reason": "تمہاری آنکھوں نے خواب بنا کر سنبھالے،\nتمہاری آنکھوں نے دل کی دنیا روشن کی۔",
+    "type": "prayer"
+  },
+  {
+    "id": 18,
+    "reason": "Because Allah trusted this world with you.",
+    "type": "faith"
+  },
+  {
+    "id": 19,
+    "reason": "Because even winters bloom with the right soul.",
+    "type": "hope"
+  },
+  {
+    "id": 20,
+    "reason": "تیری آواز میں وہ لطافت ہے، دل کی دوا ہے،\nتیری آواز میں سکوں ہے، جیسے صبح کی صلا ہے۔",
+    "type": "wisdom"
+  },
+  {
+    "id": 21,
+    "reason": "Because every birthday is a divine reminder.",
+    "type": "faith"
+  },
+  {
+    "id": 22,
+    "reason": "Because your life is already meaningful.",
+    "type": "gratitude"
+  },
+  {
+    "id": 23,
+    "reason": "Because today teaches us patience and love.",
+    "type": "wisdom"
+  },
+  {
+    "id": 24,
+    "reason": "جب تم قریب آتے ہو تو ٹھنڈی ہوا چلتی ہے،\nجب تم ہنستے ہو تو روشنی کی لہر اترتی ہے۔",
+    "type": "prayer"
+  },
+  {
+    "id": 25,
+    "reason": "Because Allah’s timing is always perfect.",
+    "type": "faith"
+  },
+  {
+    "id": 26,
+    "reason": "Because your tears will never be unnoticed.",
+    "type": "love"
+  },
+  { "id": 27, "reason": "Because joy grows when shared.", "type": "gratitude" },
+  {
+    "id": 28,
+    "reason": "Because your name will be spoken with pride.",
+    "type": "hope"
+  },
+  {
+    "id": 29,
+    "reason": "تمہارے دل کی نرمی نے دنیا کو خوبصورت کیا،\nتمہارے دل کے صدقے سے ہر زخم میں شفا آئی۔",
+    "type": "prayer"
+  },
+  {
+    "id": 30,
+    "reason": "Because today is wrapped in barakah.",
+    "type": "gratitude"
+  },
+
+  {
+    "id": 31,
+    "reason": "Because your future is written with mercy.",
+    "type": "faith"
+  },
+  {
+    "id": 32,
+    "reason": "Because you are protected even when unseen.",
+    "type": "prayer"
+  },
+  {
+    "id": 33,
+    "reason": "تمہاری آنکھوں نے دل کے خواب روشن کیے،\nتمہاری آنکھوں نے زندگی کو روشنی دکھائی۔",
+    "type": "hope"
+  },
+  {
+    "id": 34,
+    "reason": "Because Allah listens when you are silent.",
+    "type": "faith"
+  },
+  {
+    "id": 35,
+    "reason": "Because today celebrates life itself.",
+    "type": "gratitude"
+  },
+  {
+    "id": 36,
+    "reason": "تمہارے ہونٹوں کی مسکان نے دل کو بہلا دیا،\nتمہارے ہونٹوں نے زندگی کی ہر راہ چمکا دی۔",
+    "type": "prayer"
+  },
+  {
+    "id": 37,
+    "reason": "Because kindness will always find you.",
+    "type": "love"
+  },
+  { "id": 38, "reason": "Because you are never alone.", "type": "faith" },
+  {
+    "id": 39,
+    "reason": "Because small beginnings lead to greatness.",
+    "type": "hope"
+  },
+  {
+    "id": 40,
+    "reason": "Because today smells like mercy.",
+    "type": "gratitude"
+  },
+  {
+    "id": 41,
+    "reason": "Because your heart will learn resilience.",
+    "type": "wisdom"
+  },
+  {
+    "id": 42,
+    "reason": "Because Allah loves those born with purpose.",
+    "type": "faith"
+  },
+  {
+    "id": 43,
+    "reason": "جس دل میں تم بستی ہو، وہ گلزار ہو جاتا ہے،\nجس دل میں تم آؤ، وہ بادلوں سے بہار لے لے۔",
+    "type": "love"
+  },
+  {
+    "id": 44,
+    "reason": "Because today reminds us to be thankful.",
+    "type": "gratitude"
+  },
+  {
+    "id": 45,
+    "reason": "تمہاری نظر نے امید کے چراغ روشن کیے،\nتمہاری نظر نے دل کو ہر راستہ دکھایا۔",
+    "type": "prayer"
+  },
+  {
+    "id": 46,
+    "reason": "Because your life is already precious.",
+    "type": "love"
+  },
+  {
+    "id": 47,
+    "reason": "Because Allah never abandons His creation.",
+    "type": "faith"
+  },
+  {
+    "id": 48,
+    "reason": "تیری سانسوں کی خوشبو نے فضا کو مسحور کیا،\nتیری سانس نے دل کو نیا سویرا بتایا۔",
+    "type": "hope"
+  },
+  {
+    "id": 49,
+    "reason": "Because your existence is meaningful.",
+    "type": "gratitude"
+  },
+  { "id": 50, "reason": "Because love begins today.", "type": "love" },
+  {
+    "id": 51,
+    "reason": "Because your steps are watched with care.",
+    "type": "faith"
+  },
+  {
+    "id": 52,
+    "reason": "ہر صبح تمہارے خیال سے روشنی لے کر آئے،\nہر شب تمہارے نام ایک دعا سا بن جائے۔",
+    "type": "prayer"
+  },
+  {
+    "id": 53,
+    "reason": "Because today is a blessing, not a coincidence.",
+    "type": "faith"
+  },
+  {
+    "id": 54,
+    "reason": "Because your heart will learn faith before fear.",
+    "type": "wisdom"
+  },
+  {
+    "id": 55,
+    "reason": "تمہارے چہرے نے دل کو خوشبو دی بانٹ دی،\nتمہارے چہرے نے ہر دکھ کو بے رنگ کیا۔",
+    "type": "gratitude"
+  },
+  {
+    "id": 56,
+    "reason": "Because mercy flows silently today.",
+    "type": "faith"
+  },
+  {
+    "id": 57,
+    "reason": "تمہارے ہونٹوں نے مسکان کا عکس باندھا،\nتمہارے ہونٹوں نے دل کے زخموں کو مٹایا۔",
+    "type": "prayer"
+  },
+  {
+    "id": 58,
+    "reason": "Because your life will matter to many.",
+    "type": "hope"
+  },
+  {
+    "id": 59,
+    "reason": "تمہاری آنکھوں نے روشنی کے جزیرے دکھائے،\nتمہاری آنکھوں نے ہر اندھیرا دور کیا۔",
+    "type": "love"
+  },
+  {
+    "id": 60,
+    "reason": "Because this day was written for happiness.",
+    "type": "gratitude"
+  },
+  {
+    "id": 61,
+    "reason": "Because you were born with purpose.",
+    "type": "faith"
+  },
+  {
+    "id": 62,
+    "reason": "تمہاری مسکان نے زمانے کو نیا رنگ دیا،\nتمہاری مسکان نے ہر دل کو سکیں بخشا۔",
+    "type": "wisdom"
+  },
+  { "id": 63, "reason": "Because Allah chose you.", "type": "faith" },
+  {
+    "id": 64,
+    "reason": "Because your heart will be strong and soft.",
+    "type": "love"
+  },
+  { "id": 65, "reason": "Because today whispers peace.", "type": "gratitude" },
+
+  {
+    "id": 66,
+    "reason": "جب تم ہنستے ہو، وقت بھی مسکرا دیتا ہے،\nجب تم ہنستے ہو، دل خود کو آزاد محسوس کرتا ہے۔",
+    "type": "prayer"
+  },
+  { "id": 67, "reason": "Because your future is bright.", "type": "hope" },
+  {
+    "id": 68,
+    "reason": "تمہارے سر کے بالوں کی نرم روشنی ہے،\nتمہارے بالوں کی لہر دل کو بہا لے جاتی ہے۔",
+    "type": "love"
+  },
+  { "id": 69, "reason": "Because Allah’s mercy is endless.", "type": "faith" },
+  {
+    "id": 70,
+    "reason": "Because your birth is a blessing.",
+    "type": "gratitude"
+  },
+  { "id": 71, "reason": "Because today is full of barakah.", "type": "faith" },
+  {
+    "id": 72,
+    "reason": "تمہاری آواز دل کی روشنی بن جاتی ہے،\nتمہاری آواز امید کو نئی صبح دیتی ہے۔",
+    "type": "love"
+  },
+  {
+    "id": 73,
+    "reason": "Because Allah listens to silent duas.",
+    "type": "prayer"
+  },
+  {
+    "id": 74,
+    "reason": "تمہاری مسکان ہر دل میں بہار لاتی ہے،\nتمہاری مسکان ہر گم شدہ امید کو جگاتی ہے۔",
+    "type": "gratitude"
+  },
+  { "id": 75, "reason": "Because your journey is protected.", "type": "faith" },
+  { "id": 76, "reason": "Because today is wrapped in mercy.", "type": "faith" },
+  { "id": 77, "reason": "Because your soul is gentle.", "type": "love" },
+  { "id": 78, "reason": "Because Allah’s plan is beautiful.", "type": "faith" },
+  { "id": 79, "reason": "Because hope was born today.", "type": "hope" },
+  {
+    "id": 80,
+    "reason": "Because gratitude fills the air.",
+    "type": "gratitude"
+  },
+  { "id": 81, "reason": "Because your life is sacred.", "type": "faith" },
+  { "id": 82, "reason": "Because today is meaningful.", "type": "wisdom" },
+  { "id": 83, "reason": "Because Allah is near.", "type": "faith" },
+  {
+    "id": 84,
+    "reason": "جب تم قریب آتے ہو تو ہوا نرمی بن جاتی ہے،\nجب تم مسکراتے ہو تو دل کو راحت ملتی ہے۔",
+    "type": "love"
+  },
+  {
+    "id": 85,
+    "reason": "تم نے جب مسکرایا تو چاند بھی مسکرا اٹھا،\nہر تارے نے آنکھوں میں خوشی کے دیپ جلائے۔",
+    "type": "prayer"
+  },
+  { "id": 86, "reason": "Because today feels kind.", "type": "gratitude" },
+  { "id": 87, "reason": "Because your soul carries light.", "type": "faith" },
+  {
+    "id": 88,
+    "reason": "وہ لمحے تمہارے ساتھ، سحر کی مانند نور تھے،\nوہ لمحے تمہارے ساتھ، شاعری کی مانند خوشبو تھے۔",
+    "type": "love"
+  },
+  { "id": 89, "reason": "Because Allah’s mercy never ends.", "type": "faith" },
+  { "id": 90, "reason": "Because today is blessed.", "type": "gratitude" },
+  {
+    "id": 91,
+    "reason": "تمہارے دل کی نرمی نے دنیا کو خوبصورت کیا،\nتمہارے دل کے صدقے سے ہر زخم میں شفا آئی۔",
+    "type": "love"
+  },
+  { "id": 92, "reason": "Because Allah’s care is constant.", "type": "faith" },
+  { "id": 93, "reason": "Because hope walks with you.", "type": "hope" },
+  { "id": 94, "reason": "Because today matters.", "type": "wisdom" },
+  {
+    "id": 95,
+    "reason": "تمہاری آنکھوں میں خوابوں کو آغوش ملا،\nتمہاری آنکھوں نے ہر رات کو صبا بنا دیا۔",
+    "type": "prayer"
+  },
+  { "id": 96, "reason": "Because your life has meaning.", "type": "faith" },
+  { "id": 97, "reason": "Because love begins again today.", "type": "love" },
+  { "id": 98, "reason": "Because Allah never forgets you.", "type": "faith" },
+  { "id": 99, "reason": "Because joy is written for you.", "type": "hope" },
+  {
+    "id": 100,
+    "reason": "Because today is a celebration of life, mercy, and divine love.",
+    "type": "gratitude"
+  },
+  {
+    "id": 101,
+    "reason": "اور بھی دکھ ہیں زمانے میں محبت کے سوا\nراحتیں اور بھی ہیں وصل کی راحت کے سوا\n\nمجھ سے پہلی سی محبت مرے محبوب نہ مانگ",
+    "type": "love"
+  }
+]

@@ -24,9 +24,12 @@ export default function ScreenContainer({
   }, []);
 
   return (
-    <div className={`screen-transition fade-in py-12 ${className}`}>
-      <div className="relative">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div
+      className={`screen-transition fade-in h-screen w-screen overflow-y-auto overflow-x-hidden ${className}`}
+    >
+      <div className="relative min-h-full w-full">
+        {/* Scrolling background text */}
+        <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
           {backgroundLines.map((line) => (
             <div
               key={line.id}
@@ -48,7 +51,8 @@ export default function ScreenContainer({
             </div>
           ))}
         </div>
-        {children}
+        {/* Main content */}
+        <div className="relative z-10 h-full w-full">{children}</div>
       </div>
     </div>
   );
