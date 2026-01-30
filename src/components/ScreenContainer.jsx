@@ -19,7 +19,7 @@ export default function ScreenContainer({
 
   const lineText = useMemo(() => {
     return Array.from({ length: 30 })
-      .map(() => "Happy Birthday MenteE")
+      .map(() => "Happy Birthday Sara 💝")
       .join(" • ");
   }, []);
 
