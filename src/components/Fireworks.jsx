@@ -10,11 +10,11 @@ export default function Fireworks() {
       const topPos = 20 + Math.random() * 40; // Explode between 20-60% from top
 
       // Create explosion with multiple particles
-      const particles = Array.from({ length: 40 }, (_, i) => ({
+      const particles = Array.from({ length: 20 }, (_, i) => ({
         id: `${explosionId}-${i}`,
         angle: (i / 40) * Math.PI * 2, // Spread 360 degrees
         speed: 3 + Math.random() * 5,
-        emoji: ["🎆", "✨", "💥", "🌟", "🎉", "💫", "⭐", "🎊"][
+        emoji: ["🎆", "🌹", "💥", "🌟", "🌹", "🌹", "🌹", "🎊"][
           Math.floor(Math.random() * 8)
         ],
       }));

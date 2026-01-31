@@ -7,7 +7,6 @@ import SpecialAnimation from "./components/SpecialAnimation";
 import CelebrationSection from "./components/CelebrationSection";
 import BirthdayGifs from "./components/BirthdayGifs";
 import Fireworks from "./components/Fireworks";
-import FallingRoses from "./components/FallingRoses";
 import wishes from "./data.json";
 import { useSound } from "./hooks/useSound";
 
@@ -67,9 +66,6 @@ function App() {
     <ScreenContainer isVisible={true}>
       {/* Continuous Fireworks */}
       <Fireworks />
-
-      {/* Falling Roses */}
-      <FallingRoses />
 
       {/* Special Birthday Animation */}
       <SpecialAnimation />
