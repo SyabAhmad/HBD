@@ -1,19 +1,46 @@
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
+import React from "react";
 import { getBirthdayTrivia } from "../utils/birthdayTrivia";
 
-export default function BirthdayTrivia() {
+// Memoized dot button component
+const TriviaDot = React.memo(function TriviaDot({ isActive, onClick, index }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`dot ${isActive ? "active" : ""}`}
+      aria-label={`Go to fact ${index + 1}`}
+      style={{ willChange: "transform, background-color" }}
+    />
+  );
+});
+
+// Memoized navigation button
+const NavButton = React.memo(function NavButton({ direction, onClick }) {
+  return (
+    <button onClick={onClick} className={`trivia-${direction}`}>
+      {direction === "prev" ? "←" : "→"}
+    </button>
+  );
+});
+
+function BirthdayTrivia() {
   const [currentFactIndex, setCurrentFactIndex] = useState(0);
 
-  const facts = getBirthdayTrivia("01/02/2004");
+  // Memoize facts to prevent regeneration on each render
+  const facts = useMemo(() => getBirthdayTrivia("01/02/2004"), []);
   const currentFact = facts[currentFactIndex];
 
-  const nextFact = () => {
+  const nextFact = useCallback(() => {
     setCurrentFactIndex((prev) => (prev + 1) % facts.length);
-  };
+  }, [facts.length]);
 
-  const prevFact = () => {
+  const prevFact = useCallback(() => {
     setCurrentFactIndex((prev) => (prev - 1 + facts.length) % facts.length);
-  };
+  }, [facts.length]);
+
+  const goToFact = useCallback((index) => {
+    setCurrentFactIndex(index);
+  }, []);
 
   return (
     <div className="new-trivia-card">
@@ -22,26 +49,25 @@ export default function BirthdayTrivia() {
       </div>
 
       <div className="trivia-body">
-        <div className="trivia-fact-emoji">{currentFact.emoji}</div>
+        <div className="trivia-fact-emoji" style={{ willChange: "transform" }}>
+          {currentFact.emoji}
+        </div>
         <div className="trivia-fact-title">{currentFact.title}</div>
         <div className="trivia-fact-text">{currentFact.fact}</div>
 
         <div className="trivia-nav">
-          <button onClick={prevFact} className="trivia-prev">
-            ←
-          </button>
+          <NavButton direction="prev" onClick={prevFact} />
           <div className="trivia-dots">
             {facts.map((_, idx) => (
-              <button
+              <TriviaDot
                 key={idx}
-                onClick={() => setCurrentFactIndex(idx)}
-                className={`dot ${idx === currentFactIndex ? "active" : ""}`}
+                index={idx}
+                isActive={idx === currentFactIndex}
+                onClick={() => goToFact(idx)}
               />
             ))}
           </div>
-          <button onClick={nextFact} className="trivia-next">
-            →
-          </button>
+          <NavButton direction="next" onClick={nextFact} />
         </div>
 
         <div className="trivia-counter">
@@ -51,3 +77,5 @@ export default function BirthdayTrivia() {
     </div>
   );
 }
+
+export default React.memo(BirthdayTrivia);

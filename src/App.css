@@ -1,6 +1,6 @@
 /* App.css - Cute Mystery Box & Modal Styles 💖 */
 
-/* ===== FIREWORKS EXPLOSION ANIMATION ===== */
+/* ===== FIREWORKS EXPLOSION ANIMATION - OPTIMIZED ===== */
 .fireworks-container {
   position: fixed;
   bottom: 0;
@@ -9,40 +9,47 @@
   height: 100vh;
   pointer-events: none;
   z-index: 5;
+  /* Containment for performance - isolates paint/layout */
+  contain: layout style paint;
 }
 
 .explosion {
   position: absolute;
   width: 0;
   height: 0;
+  /* Force GPU layer for smoother animation */
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .particle {
   position: absolute;
   font-size: 1.5rem;
   opacity: 1;
-  animation: burst-particle 2.5s ease-out forwards;
+  /* Shorter animation for better performance */
+  animation: burst-particle 2s ease-out forwards;
   transform-origin: center;
+  /* GPU acceleration */
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  /* Removed expensive drop-shadow filter */
 }
 
 @keyframes burst-particle {
   0% {
     opacity: 1;
     transform: translate(0, 0) scale(1);
-    filter: drop-shadow(0 0 5px rgba(255, 192, 203, 1));
   }
   50% {
-    opacity: 1;
-    filter: drop-shadow(0 0 15px rgba(255, 105, 180, 1));
+    opacity: 0.9;
   }
   100% {
     opacity: 0;
-    transform: translate(var(--x), var(--y)) scale(0);
-    filter: drop-shadow(0 0 0px rgba(255, 192, 203, 0));
+    transform: translate3d(var(--x), var(--y), 0) scale(0.3);
   }
 }
 
-/* ===== FALLING ROSES ANIMATION ===== */
+/* ===== FALLING ROSES ANIMATION - OPTIMIZED ===== */
 .falling-roses-container {
   position: fixed;
   top: 0;
@@ -52,6 +59,7 @@
   pointer-events: none;
   z-index: 4;
   overflow: hidden;
+  contain: layout style paint;
 }
 
 .falling-rose {
@@ -60,22 +68,23 @@
   font-size: 2rem;
   opacity: 1;
   animation: fall-and-sway 5s ease-in forwards;
-  filter: drop-shadow(0 0 3px rgba(255, 192, 203, 0.6));
+  /* GPU acceleration, removed expensive filter */
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 @keyframes fall-and-sway {
   0% {
     opacity: 0.8;
-    transform: translateY(0) translateX(0) rotate(0deg);
+    transform: translate3d(0, 0, 0) rotate(0deg);
   }
   50% {
     opacity: 1;
-    filter: drop-shadow(0 0 8px rgba(220, 20, 60, 0.5));
   }
   100% {
     opacity: 0;
-    transform: translateY(100vh) translateX(var(--sway)) rotate(360deg);
-    filter: drop-shadow(0 0 0px rgba(220, 20, 60, 0));
+    transform: translate3d(var(--sway, 50px), 100vh, 0) rotate(360deg);
   }
 }
 
@@ -104,18 +113,18 @@ select {
   overflow: auto;
 }
 
-/* ===== Cute Header ===== */
+/* ===== Cute Header - OPTIMIZED ===== */
 .cute-header {
   background: linear-gradient(
     135deg,
-    rgba(255, 105, 180, 0.7) 0%,
-    rgba(255, 182, 193, 0.8) 50%,
-    rgba(218, 112, 214, 0.7) 100%
+    rgba(255, 105, 180, 0.85) 0%,
+    rgba(255, 182, 193, 0.9) 50%,
+    rgba(218, 112, 214, 0.85) 100%
   );
   margin-top: 40px;
   border-radius: 20px;
   border: 2px dashed rgba(255, 20, 147, 0.7);
-  backdrop-filter: blur(8px);
+  /* Removed backdrop-filter, using solid gradient instead */
   box-shadow: 0 4px 20px rgba(255, 20, 147, 0.3);
 }
 
@@ -217,7 +226,7 @@ select {
   }
 }
 
-/* ===== Special Birthday Animation ===== */
+/* ===== Special Birthday Animation - OPTIMIZED ===== */
 .special-animation {
   position: fixed;
   top: 0;
@@ -226,6 +235,7 @@ select {
   bottom: 0;
   pointer-events: none;
   z-index: 999;
+  contain: layout style paint;
 }
 
 .celebration-banner {
@@ -235,6 +245,7 @@ select {
   transform: translate(-50%, -50%);
   z-index: 1000;
   animation: banner-pulse 0.6s ease-out;
+  will-change: transform, opacity;
 }
 
 .banner-text {
@@ -244,8 +255,10 @@ select {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 0 30px rgba(255, 20, 147, 0.5);
-  animation: scale-bounce 1s ease-in-out infinite;
+  /* Removed expensive text-shadow, kept visual appeal */
+  animation: scale-bounce 1.5s ease-in-out infinite;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 @keyframes banner-pulse {
@@ -280,12 +293,16 @@ select {
   bottom: 0;
   overflow: hidden;
   pointer-events: none;
+  contain: layout style paint;
 }
 
 .particle {
   position: absolute;
   font-size: 2rem;
   pointer-events: none;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .particle.confetti {
@@ -301,12 +318,12 @@ select {
   0% {
     top: -50px;
     opacity: 1;
-    transform: rotateZ(0deg) rotateX(0deg);
+    transform: translate3d(0, 0, 0) rotate(0deg);
   }
   100% {
     top: 100vh;
     opacity: 0;
-    transform: rotateZ(720deg) rotateX(360deg);
+    transform: translate3d(0, 0, 0) rotate(720deg);
   }
 }
 
@@ -314,12 +331,12 @@ select {
   0% {
     bottom: -50px;
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
   }
   100% {
     bottom: 100vh;
     opacity: 0;
-    transform: translateY(-20px) scale(0.5);
+    transform: translate3d(0, -20px, 0) scale(0.5);
   }
 }
 
@@ -331,12 +348,15 @@ select {
   height: 400px;
   background: radial-gradient(
     circle,
-    rgba(255, 20, 147, 0.2) 0%,
+    rgba(255, 20, 147, 0.15) 0%,
     transparent 70%
   );
   transform: translate(-50%, -50%);
-  animation: glow-pulse 2s ease-in-out infinite;
+  animation: glow-pulse 3s ease-in-out infinite;
   pointer-events: none;
+  will-change: opacity, transform;
+  /* Reduce paint area */
+  contain: layout style;
 }
 
 @keyframes glow-pulse {
@@ -909,7 +929,7 @@ select {
   }
 }
 
-/* ===== CELEBRATION SECTION ===== */
+/* ===== CELEBRATION SECTION - OPTIMIZED ===== */
 .celebration-section {
   width: 100%;
   max-width: 42rem;
@@ -921,16 +941,18 @@ select {
   text-align: center;
   box-shadow: 0 10px 40px rgba(255, 20, 147, 0.3);
   animation: celebration-slide-up 0.8s ease-out;
+  /* Containment for animation performance */
+  contain: layout style;
 }
 
 @keyframes celebration-slide-up {
   0% {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translate3d(0, 30px, 0);
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -954,39 +976,41 @@ select {
 
 .celebrate-emoji {
   font-size: 2.5rem;
-  animation: bounce-celebration 1s ease-in-out infinite;
+  animation: bounce-celebration 1.5s ease-in-out infinite;
   display: inline-block;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .celebrate-emoji:nth-child(1) {
   animation-delay: 0s;
 }
 .celebrate-emoji:nth-child(2) {
-  animation-delay: 0.1s;
+  animation-delay: 0.15s;
 }
 .celebrate-emoji:nth-child(3) {
-  animation-delay: 0.2s;
-}
-.celebrate-emoji:nth-child(4) {
   animation-delay: 0.3s;
 }
+.celebrate-emoji:nth-child(4) {
+  animation-delay: 0.45s;
+}
 .celebrate-emoji:nth-child(5) {
-  animation-delay: 0.4s;
+  animation-delay: 0.6s;
 }
 .celebrate-emoji:nth-child(6) {
-  animation-delay: 0.5s;
+  animation-delay: 0.75s;
 }
 .celebrate-emoji:nth-child(7) {
-  animation-delay: 0.6s;
+  animation-delay: 0.9s;
 }
 
 @keyframes bounce-celebration {
   0%,
   100% {
-    transform: translateY(0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
   }
   50% {
-    transform: translateY(-15px) scale(1.15);
+    transform: translate3d(0, -12px, 0) scale(1.1);
   }
 }
 
@@ -1032,35 +1056,36 @@ select {
 }
 
 .celebration-hearts span {
-  animation: hearts-float 2s ease-in-out infinite;
+  animation: hearts-float 2.5s ease-in-out infinite;
   display: inline-block;
+  will-change: transform, opacity;
 }
 
 .celebration-hearts span:nth-child(1) {
   animation-delay: 0s;
 }
 .celebration-hearts span:nth-child(2) {
-  animation-delay: 0.2s;
+  animation-delay: 0.25s;
 }
 .celebration-hearts span:nth-child(3) {
-  animation-delay: 0.4s;
+  animation-delay: 0.5s;
 }
 .celebration-hearts span:nth-child(4) {
-  animation-delay: 0.6s;
+  animation-delay: 0.75s;
 }
 .celebration-hearts span:nth-child(5) {
-  animation-delay: 0.8s;
+  animation-delay: 1s;
 }
 
 @keyframes hearts-float {
   0%,
   100% {
-    transform: translateY(0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
     opacity: 1;
   }
   50% {
-    transform: translateY(-20px) scale(1.2);
-    opacity: 0.8;
+    transform: translate3d(0, -15px, 0) scale(1.15);
+    opacity: 0.85;
   }
 }
 
@@ -1431,13 +1456,14 @@ select {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.6);
+  /* Removed backdrop-filter for performance, using solid background instead */
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
   animation: fade-in 0.3s ease;
+  contain: layout style paint;
 }
 
 @keyframes fade-in {
@@ -1449,7 +1475,7 @@ select {
   }
 }
 
-/* ===== Modal Card ===== */
+/* ===== Modal Card - OPTIMIZED ===== */
 .modal-card {
   position: relative;
   width: 90%;
@@ -1457,12 +1483,13 @@ select {
   padding: 40px 30px;
   border-radius: 30px;
   border: 4px solid rgba(255, 182, 193, 0.8);
-  box-shadow:
-    0 25px 60px rgba(255, 105, 180, 0.3),
-    0 10px 30px rgba(0, 0, 0, 0.15),
-    inset 0 0 60px rgba(255, 255, 255, 0.3);
+  /* Simplified box-shadow for better performance */
+  box-shadow: 0 20px 50px rgba(255, 105, 180, 0.25);
   animation: modal-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   text-align: center;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 @keyframes modal-pop {
@@ -1483,26 +1510,9 @@ select {
   left: 0;
   right: 0;
   height: 6px;
-  background: linear-gradient(
-    90deg,
-    #ff9a9e,
-    #fecfef,
-    #fecfef,
-    #a18cd1,
-    #ff9a9e
-  );
-  background-size: 200% 100%;
+  /* Simpler gradient without animation for performance */
+  background: linear-gradient(90deg, #ff9a9e, #fecfef, #a18cd1);
   border-radius: 30px 30px 0 0;
-  animation: shimmer 2s linear infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
 }
 
 .modal-close {
@@ -1544,10 +1554,10 @@ select {
 @keyframes float {
   0%,
   100% {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translate3d(0, -10px, 0);
   }
 }
 
@@ -1579,16 +1589,17 @@ select {
 
 .modal-hearts span {
   font-size: 1.2rem;
-  animation: heart-bounce 1s ease-in-out infinite;
+  animation: heart-bounce 1.2s ease-in-out infinite;
+  will-change: transform;
 }
 
 @keyframes heart-bounce {
   0%,
   100% {
-    transform: translateY(0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
   }
   50% {
-    transform: translateY(-6px) scale(1.1);
+    transform: translate3d(0, -6px, 0) scale(1.1);
   }
 }
 

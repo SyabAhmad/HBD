@@ -1,68 +1,102 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
+import React from "react";
 
-export default function Fireworks() {
+// Memoized particle component to prevent re-renders
+const Particle = React.memo(function Particle({ x, y, emoji }) {
+  return (
+    <div
+      className="particle"
+      style={{
+        "--x": `${x}px`,
+        "--y": `${-y}px`,
+      }}
+    >
+      {emoji}
+    </div>
+  );
+});
+
+// Memoized explosion component
+const Explosion = React.memo(function Explosion({ explosion }) {
+  const particles = useMemo(() => {
+    return explosion.particles.map((particle) => ({
+      ...particle,
+      xDist: Math.cos(particle.angle) * particle.speed * 80,
+      yDist: Math.sin(particle.angle) * particle.speed * 80,
+    }));
+  }, [explosion.particles]);
+
+  return (
+    <div
+      className="explosion"
+      style={{
+        left: `${explosion.left}%`,
+        top: `${explosion.top}%`,
+      }}
+    >
+      {particles.map((particle) => (
+        <Particle
+          key={particle.id}
+          x={particle.xDist}
+          y={particle.yDist}
+          emoji={particle.emoji}
+        />
+      ))}
+    </div>
+  );
+});
+
+function Fireworks() {
   const [explosions, setExplosions] = useState([]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const explosionId = Date.now();
-      const leftPos = Math.random() * 100;
-      const topPos = 20 + Math.random() * 40; // Explode between 20-60% from top
+  // Generate a single explosion - memoized callback
+  const createExplosion = useCallback(() => {
+    const explosionId = Date.now();
+    const leftPos = Math.random() * 100;
+    const topPos = 20 + Math.random() * 40;
 
-      // Create explosion with multiple particles
-      const particles = Array.from({ length: 20 }, (_, i) => ({
-        id: `${explosionId}-${i}`,
-        angle: (i / 40) * Math.PI * 2, // Spread 360 degrees
-        speed: 3 + Math.random() * 5,
-        emoji: ["🎆", "🌹", "💥", "🌟", "🌹", "🌹", "🌹", "🎊"][
-          Math.floor(Math.random() * 8)
-        ],
-      }));
+    // Reduced from 20 to 12 particles for performance
+    const particles = Array.from({ length: 12 }, (_, i) => ({
+      id: `${explosionId}-${i}`,
+      angle: (i / 24) * Math.PI * 2,
+      speed: 2.5 + Math.random() * 4,
+      emoji: ["🎆", "🌹", "💥", "🌟", "🌹", "🌹"][
+        Math.floor(Math.random() * 6)
+      ],
+    }));
 
-      setExplosions((prev) => [
-        ...prev,
-        { id: explosionId, left: leftPos, top: topPos, particles },
-      ]);
+    const newExplosion = {
+      id: explosionId,
+      left: leftPos,
+      top: topPos,
+      particles,
+    };
 
-      // Remove explosion after animation ends
-      setTimeout(() => {
-        setExplosions((prev) => prev.filter((exp) => exp.id !== explosionId));
-      }, 2500);
-    }, 800); // Launch new firework every 800ms
+    setExplosions((prev) => {
+      // Keep max 4 explosions at a time for performance
+      const filtered = prev.length > 3 ? prev.slice(-3) : prev;
+      return [...filtered, newExplosion];
+    });
 
-    return () => clearInterval(interval);
+    // Remove after animation
+    setTimeout(() => {
+      setExplosions((prev) => prev.filter((exp) => exp.id !== explosionId));
+    }, 2000);
   }, []);
+
+  useEffect(() => {
+    // Increased interval from 800ms to 1200ms for better performance
+    const interval = setInterval(createExplosion, 1200);
+    return () => clearInterval(interval);
+  }, [createExplosion]);
 
   return (
     <div className="fireworks-container">
       {explosions.map((explosion) => (
-        <div
-          key={explosion.id}
-          className="explosion"
-          style={{
-            left: `${explosion.left}%`,
-            top: `${explosion.top}%`,
-          }}
-        >
-          {explosion.particles.map((particle) => {
-            const xDist = Math.cos(particle.angle) * particle.speed * 100;
-            const yDist = Math.sin(particle.angle) * particle.speed * 100;
-
-            return (
-              <div
-                key={particle.id}
-                className="particle"
-                style={{
-                  "--x": `${xDist}px`,
-                  "--y": `${-yDist}px`,
-                }}
-              >
-                {particle.emoji}
-              </div>
-            );
-          })}
-        </div>
+        <Explosion key={explosion.id} explosion={explosion} />
       ))}
     </div>
   );
 }
+
+export default React.memo(Fireworks);

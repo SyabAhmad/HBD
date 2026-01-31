@@ -1,15 +1,20 @@
-export default function CelebrationSection() {
+import React from "react";
+
+// Pre-defined emoji arrays to prevent recreation
+const TOP_EMOJIS = ["😸", "🎉", "🐱", "✨", "😻", "🎂", "🐈"];
+const BOTTOM_EMOJIS = ["🎈", "🌸", "😻", "💫", "🎁", "👑", "🐱"];
+const HEARTS = ["💕", "💖", "💗", "💝", "💓"];
+
+function CelebrationSection() {
   return (
     <div className="celebration-section">
       <div className="celebration-content">
         <div className="celebration-emoji-row">
-          <span className="celebrate-emoji">😸</span>
-          <span className="celebrate-emoji">🎉</span>
-          <span className="celebrate-emoji">🐱</span>
-          <span className="celebrate-emoji">✨</span>
-          <span className="celebrate-emoji">😻</span>
-          <span className="celebrate-emoji">🎂</span>
-          <span className="celebrate-emoji">🐈</span>
+          {TOP_EMOJIS.map((emoji, i) => (
+            <span key={`top-${i}`} className="celebrate-emoji">
+              {emoji}
+            </span>
+          ))}
         </div>
 
         <h2 className="celebration-title">You're Amazing! 🌟</h2>
@@ -21,11 +26,9 @@ export default function CelebrationSection() {
         </p>
 
         <div className="celebration-hearts">
-          <span>💕</span>
-          <span>💖</span>
-          <span>💗</span>
-          <span>💝</span>
-          <span>💓</span>
+          {HEARTS.map((heart, i) => (
+            <span key={`heart-${i}`}>{heart}</span>
+          ))}
         </div>
 
         <p className="celebration-message">
@@ -40,15 +43,15 @@ export default function CelebrationSection() {
         </p>
 
         <div className="celebration-emoji-row bottom">
-          <span className="celebrate-emoji">🎈</span>
-          <span className="celebrate-emoji">🌸</span>
-          <span className="celebrate-emoji">😻</span>
-          <span className="celebrate-emoji">💫</span>
-          <span className="celebrate-emoji">🎁</span>
-          <span className="celebrate-emoji">👑</span>
-          <span className="celebrate-emoji">🐱</span>
+          {BOTTOM_EMOJIS.map((emoji, i) => (
+            <span key={`bottom-${i}`} className="celebrate-emoji">
+              {emoji}
+            </span>
+          ))}
         </div>
       </div>
     </div>
   );
 }
+
+export default React.memo(CelebrationSection);

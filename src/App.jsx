@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback, useMemo } from "react";
 import "./App.css";
 import ScreenContainer from "./components/ScreenContainer";
 import PersonalDedication from "./components/PersonalDedication";
@@ -48,26 +48,52 @@ const getRotate = (id) => {
   return options[id % options.length];
 };
 
+// Pre-compute wish card data to avoid recalculation on each render
+const processedWishes = wishes.map((card, index) => ({
+  ...card,
+  rotate: getRotate(card.id),
+  bgClass: typeToBgClass[card.type] || "bg-rose-50",
+  emoji: typeToEmoji[card.type] || cuteEmojis[index % cuteEmojis.length],
+  animationDelay: index * 0.03,
+}));
+
+// Modal hearts constant
+const MODAL_HEARTS = ["💕", "✨", "💖", "✨", "💕"];
+
 function App() {
   const [selectedCard, setSelectedCard] = useState(null);
-  const { playSound, playBeep } = useSound();
+  const { playBeep } = useSound();
 
-  const openCard = (card) => {
-    playBeep(800, 150); // Play a cute beep sound
-    setSelectedCard(card);
-  };
+  const openCard = useCallback(
+    (card) => {
+      playBeep(800, 150);
+      setSelectedCard(card);
+    },
+    [playBeep],
+  );
 
-  const closeCard = () => {
-    playBeep(600, 100); // Play a lower beep when closing
+  const closeCard = useCallback(() => {
+    playBeep(600, 100);
     setSelectedCard(null);
-  };
+  }, [playBeep]);
+
+  // Memoize selected card display values
+  const selectedCardDisplay = useMemo(() => {
+    if (!selectedCard) return null;
+    return {
+      bgClass: typeToBgClass[selectedCard.type] || "bg-rose-50",
+      emoji:
+        typeToEmoji[selectedCard.type] ||
+        cuteEmojis[(selectedCard.id - 1) % cuteEmojis.length],
+    };
+  }, [selectedCard]);
 
   return (
     <ScreenContainer isVisible={true}>
-      {/* Continuous Fireworks */}
+      {/* Continuous Fireworks - Optimized */}
       <Fireworks />
 
-      {/* Special Birthday Animation */}
+      {/* Special Birthday Animation - Optimized */}
       <SpecialAnimation />
 
       <div className="min-h-full w-full flex flex-col items-center justify-start p-4 md:p-6 gap-3 md:gap-4 relative z-10">
@@ -95,23 +121,24 @@ function App() {
           {/* Birthday Trivia Section */}
           <BirthdayTrivia />
 
-          {/* Mystery Cards Grid */}
-          <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-2 md:gap-4 p-2 relative z-20 w-full justify-center">
-            {wishes.map((card, index) => (
+          {/* Mystery Cards Grid - Optimized with pre-computed data */}
+          <div
+            className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-2 md:gap-4 p-2 relative z-20 w-full justify-center"
+            style={{ contain: "layout style" }}
+          >
+            {processedWishes.map((card) => (
               <button
                 key={card.id}
                 onClick={() => openCard(card)}
-                className={`mystery-box ${typeToBgClass[card.type] || "bg-rose-50"}`}
+                className={`mystery-box ${card.bgClass}`}
                 style={{
-                  "--rotate": `${getRotate(card.id)}deg`,
-                  transform: `rotate(${getRotate(card.id)}deg)`,
-                  animationDelay: `${index * 0.03}s`,
+                  "--rotate": `${card.rotate}deg`,
+                  transform: `rotate(${card.rotate}deg)`,
+                  animationDelay: `${card.animationDelay}s`,
+                  willChange: "transform",
                 }}
               >
-                <span className="mystery-emoji">
-                  {typeToEmoji[card.type] ||
-                    cuteEmojis[index % cuteEmojis.length]}
-                </span>
+                <span className="mystery-emoji">{card.emoji}</span>
                 <span className="mystery-number">{card.id}</span>
                 <span className="mystery-qmark">?</span>
               </button>
@@ -131,11 +158,11 @@ function App() {
         </div>
       </div>
 
-      {/* Modal */}
-      {selectedCard && (
+      {/* Modal - Optimized */}
+      {selectedCard && selectedCardDisplay && (
         <div className="modal-overlay" onClick={closeCard}>
           <div
-            className={`modal-card ${typeToBgClass[selectedCard.type] || "bg-rose-50"}`}
+            className={`modal-card ${selectedCardDisplay.bgClass}`}
             onClick={(e) => e.stopPropagation()}
           >
             <button className="modal-close" onClick={closeCard}>
@@ -143,10 +170,7 @@ function App() {
             </button>
 
             <div className="modal-decoration">
-              <span className="modal-emoji">
-                {typeToEmoji[selectedCard.type] ||
-                  cuteEmojis[(selectedCard.id - 1) % cuteEmojis.length]}
-              </span>
+              <span className="modal-emoji">{selectedCardDisplay.emoji}</span>
             </div>
 
             <div className="modal-number">#{selectedCard.id}</div>
@@ -154,7 +178,7 @@ function App() {
             <p className="modal-wish">{selectedCard.reason}</p>
 
             <div className="modal-hearts">
-              {["💕", "✨", "💖", "✨", "💕"].map((h, i) => (
+              {MODAL_HEARTS.map((h, i) => (
                 <span key={i} style={{ animationDelay: `${i * 0.15}s` }}>
                   {h}
                 </span>

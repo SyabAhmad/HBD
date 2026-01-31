@@ -1,13 +1,19 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import React from "react";
 
-export default function PersonalDedication() {
+function PersonalDedication() {
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleExpanded = useCallback(() => {
+    setIsExpanded((prev) => !prev);
+  }, []);
 
   return (
     <div className="new-dedication-card">
       <div
         className="dedication-header"
-        onClick={() => setIsExpanded(!isExpanded)}
+        onClick={toggleExpanded}
+        style={{ willChange: "transform" }}
       >
         <div className="dedication-icon">💌</div>
         <div className="dedication-title">✨💝 A Personal Message 💝✨</div>
@@ -48,3 +54,5 @@ export default function PersonalDedication() {
     </div>
   );
 }
+
+export default React.memo(PersonalDedication);

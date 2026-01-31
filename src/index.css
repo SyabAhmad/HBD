@@ -38,6 +38,47 @@
   box-sizing: border-box;
 }
 
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+/* GPU acceleration for animated elements */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Containment for animation containers */
+.contain-layout {
+  contain: layout style paint;
+}
+
+/* Optimize paint for fixed elements */
+.will-animate {
+  will-change: transform, opacity;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .fireworks-container,
+  .falling-roses-container,
+  .special-animation {
+    display: none !important;
+  }
+}
+
+/* High performance mode - limit concurrent animations */
+@media (prefers-reduced-motion: no-preference) {
+  /* Allow animations */
+}
+
 body {
   font-family: "Poppins", sans-serif;
   background-color: var(--cream);
