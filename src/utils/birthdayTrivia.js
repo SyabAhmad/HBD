@@ -2,7 +2,7 @@
 
 export const getBirthdayTrivia = (birthdayDate) => {
   // birthdayDate format: "01/02/2004" (DD/MM/YYYY)
-  const [day, month, year] = birthdayDate.split("/").map(Number);
+  const [day, month] = birthdayDate.split("/").map(Number);
 
   const facts = [
     {
@@ -68,7 +68,7 @@ export const getBirthdayTrivia = (birthdayDate) => {
 
 export const getSpecialAnimation = (birthdayDate, currentDate = new Date()) => {
   // birthdayDate format: "01/02/2004" (DD/MM/YYYY)
-  const [bDay, bMonth, bYear] = birthdayDate.split("/").map(Number);
+  const [bDay, bMonth] = birthdayDate.split("/").map(Number);
 
   const today = new Date(currentDate);
   const todayDay = today.getDate();

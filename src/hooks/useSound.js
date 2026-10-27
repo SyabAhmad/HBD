@@ -33,7 +33,7 @@ export const useSound = () => {
 
       oscillator.start(audioContext.currentTime);
       oscillator.stop(audioContext.currentTime + duration / 1000);
-    } catch (err) {
+    } catch {
       console.log("Web Audio API not available");
     }
   };
