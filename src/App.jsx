@@ -37,13 +37,16 @@ const typeToAccent = {
 const letters = wishes.map((c) => ({ ...c, accent: typeToAccent[c.type] || "#e0218a" }));
 
 const LETTER_PARAS = [
-  "On your ${AGE_ORD} birthday, I want you to know that every moment of your journey has been a blessing.",
+  `On your ${AGE_ORD} birthday, I want you to know that every moment of your journey has been a blessing.`,
   "From the day you were born on February 1st, 2004, you brought infinite joy and light to everyone around you — and you've grown into a remarkable young woman with a beautiful soul.",
   "Now, as you hold your own little daughter, a whole new chapter of love has begun. You are not just a year older. You are stronger, wiser, and more beautiful than ever.",
   "Here are a hundred and one little reasons why you are so special, so loved, and so cherished.",
 ];
 
 const SCENES = ["hero", "letter", "cake", "book", "closing"];
+
+/* One big word per section — the sentence you read as you travel through. */
+const BIG_WORDS = ["SARA", "YOU", "ARE", "BELOVED", "You are always mine ;)"];
 
 /* ------------------------------------------------------------------ */
 /*  Cherry tree (side decoration)                                     */
@@ -59,7 +62,7 @@ const PETAL_COLORS = ["#ffb7d5", "#ffc9de", "#f9a7ca", "#ffd5e6"];
 
 function CherryTree() {
   return (
-    <svg className="cherry" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <svg className="cherry-tree" viewBox="0 0 400 600" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       {/* ground shadow */}
       <ellipse cx="196" cy="596" rx="86" ry="12" fill="#e7c9a6" opacity="0.5" />
 
@@ -105,15 +108,27 @@ function CherryTree() {
 /* ------------------------------------------------------------------ */
 function CakeScene() {
   const [lit, setLit] = useState(true);
+  const [burst, setBurst] = useState(false);
   const { playBeep } = useSound();
+
+  useEffect(() => {
+    if (burst) {
+      const t = setTimeout(() => setBurst(false), 1800);
+      return () => clearTimeout(t);
+    }
+  }, [burst]);
+
   const blow = () => {
     if (!lit) return;
     playBeep(720, 90);
     setLit(false);
+    setBurst(true);
   };
+
   return (
     <div className="cake-wrap">
-      <p className="scene-sub">{lit ? "tap the cake" : "it is done ✦"}</p>
+      <p className="scene-sub">{lit ? "tap the cake to blow them out" : "it is done ✦"}</p>
+
       <button className="cake" onClick={blow} aria-label="Blow out candles">
         <span className="candles">
           {[0, 1, 2].map((i) => (
@@ -122,12 +137,35 @@ function CakeScene() {
             </span>
           ))}
         </span>
-        <span className="cake-layer cake-top" />
-        <span className="cake-layer cake-bottom" />
-        <span className="cake-plate" />
+
+        <span className="tier tier-top">
+          <span className="frosting" />
+          <span className="cherry c1" />
+          <span className="cherry c2" />
+          <span className="cherry c3" />
+        </span>
+
+        <span className="tier tier-mid">
+          <span className="hearts-row">♥ ♥ ♥</span>
+        </span>
+
+        <span className="stand" />
       </button>
+
+      {burst && (
+        <div className="burst" aria-hidden="true">
+          {["💗", "💕", "💖", "💞", "💓", "💗"].map((h, i) => (
+            <span key={i} className="burst-heart" style={{ animationDelay: `${i * 0.12}s` }}>
+              {h}
+            </span>
+          ))}
+        </div>
+      )}
+
       <p className={lit ? "cake-hint" : "cake-wish"}>
-        {lit ? "three little flames, waiting for you" : "✦ the wish is kept between you and the stars ✦"}
+        {lit
+          ? "three little flames, waiting for you"
+          : "✦ the wish is kept between you and the stars ✦"}
       </p>
     </div>
   );
@@ -336,17 +374,21 @@ function App() {
         style={{ pointerEvents: opened ? "auto" : "none" }}
       >
         <div className="grain" aria-hidden="true" />
+        <CherryTree />
         {SCENES.map((name, i) => (
           <section
             key={name}
             className={`scene ${i === active ? "is-active" : ""}`}
             aria-hidden={i !== active}
           >
-            <div className="scene-inner">{renderScene(name)}</div>
+            <div className="scene-inner">
+              <p className={`bigword ${BIG_WORDS[i].length > 8 ? "long" : ""}`}>
+                {BIG_WORDS[i]}
+              </p>
+              {renderScene(name)}
+            </div>
           </section>
         ))}
-
-        <CherryTree />
 
         {/* progress line */}
         <div className="progress" aria-hidden="true">
